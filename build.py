@@ -1,17 +1,17 @@
 
 import glob
-all_html_files = glob.glob("content/*.html")
+all_html_files = glob.glob("content/*.html") #glob looks for a list of files w/ names matching a pattern, .html
 print(all_html_files)
 
-import os
+import os #extracts useful parts of file paths
 
 file_path = "content/blog.html"
 file_name = os.path.basename(file_path)
-print(file_name)
+print(file_name) #prints blog.html
 name_only, extension = os.path.splitext(file_name)
-print(name_only)
+print(name_only) #prints blog
 
-pages = []
+pages = [] #builds from the contents of the content directory = content/*.html
 pages.append({
 	"filename": "content/index.html",
 	"title": "Index",
