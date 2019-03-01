@@ -1,33 +1,24 @@
-#1.) Simplify repetitive parts by creating variables, do this for page kayes
-#2.) Determine what needs to be done, in this case:
-# - Access the base file
-# - Replace the placeholders with content files
-# - Direct the new file to the output folder
-#3.) Per the requirements of the homework use this three steps to create three functions
-#4.) Group the line items by readibility and efficiency (title and content placeholder in one fx + return stmnt)
-#5.) Make sure to have the right parameters for each function to avoid undefined terms errors within your
-#        local function
 
-	#Created a list of dictionaries of the files involved, the directory to which the output should go
-	#and the title which will eventually be used for the placeholder
-pages = [
-	{
-		"filename":"content/index.html",
-		"output":"docs/index.html",
-		"title":"Home"
-	},
-	{
-		"filename":"content/FeatureProject.html",
-		"output":"docs/FeatureProject.html",
-		"title":"Feature Project"
-	},
-	{
-		"filename":"content/Publication.html",
-		"output":"docs/Publication.html",
-		"title":"Publication"
-	},
+import glob
+all_html_files = glob.glob("content/*.html")
+print(all_html_files)
 
-	] 
+import os
+
+file_path = "content/blog.html"
+file_name = os.path.basename(file_path)
+print(file_name)
+name_only, extension = os.path.splitext(file_name)
+print(name_only)
+
+pages = []
+pages.append({
+	"filename": "content/index.html",
+	"title": "Index",
+	"output": "docs/index.html",
+})
+
+print(pages) #lists the contents of the content folder in terminal  
 
 def main():
 	template = open("templates/base.html").read() #opens base.html
