@@ -1,24 +1,30 @@
 
 import glob
-all_html_files = glob.glob("content/*.html") #glob looks for a list of files w/ names matching a pattern, .html
-print(all_html_files)
-
 import os #extracts useful parts of file paths
+all_html_files = glob.glob("content/*.html") #glob looks for a list of files w/ names matching a pattern, .html
+pages = [] #builds from the contents of the content directory = content/*.html
+
+ 
 
 file_path = "content/blog.html"
 file_name = os.path.basename(file_path)
-print(file_name) #prints blog.html
 name_only, extension = os.path.splitext(file_name)
-print(name_only) #prints blog
 
-pages = [] #builds from the contents of the content directory = content/*.html
 pages.append({
-	"filename": "content/index.html",
-	"title": "Index",
-	"output": "docs/index.html",
+	"filename": 'content/' + name_only + extension,
+	"title": name_only,
+	"output": 'docs/' + name_only + extension,
 })
+ 
 
-print(pages) #lists the contents of the content folder in terminal  
+from jinja2 import Template
+index_html = open("content/index.html").read() #open content index.html, mainpage
+template_html = open("templates/base.html").read() #open template base.html
+template = Template(template_html) #function Template w/ pmtr template_html assigned to template var
+template.render(      
+title="Homepage",
+content=index_html,
+)
 
 def main():
 	template = open("templates/base.html").read() #opens base.html
