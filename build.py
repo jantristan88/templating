@@ -1,20 +1,21 @@
 
-import glob
-import os #extracts useful parts of file paths
-all_html_files = glob.glob("content/*.html") #glob looks for a list of files w/ names matching a pattern, .html
-pages = [] #builds from the contents of the content directory = content/*.html
+def content_files():
+	import glob #finds pathnames matching a specified pattern
+	import os #extracts useful parts of file paths
 
- 
+	all_html_files = glob.glob("content/*.html") #looks for a list of files w/ a pattern, .html
+	pages = [] #builds from the contents of the content directory = content/*.html
+	for html_file in all_html_files:
+		file_path = html_file
+		file_name = os.path.basename(file_path) #os in effect for file path extraction
+		name_only, extension = os.path.splitext(file_name)
 
-file_path = "content/blog.html"
-file_name = os.path.basename(file_path)
-name_only, extension = os.path.splitext(file_name)
-
-pages.append({
-	"filename": 'content/' + name_only + extension,
-	"title": name_only,
-	"output": 'docs/' + name_only + extension,
-})
+		pages.append({ #refactored version
+			"filename": 'content/' + name_only + extension,
+			"title": name_only,
+			"output": 'docs/' + name_only + extension,
+		})
+		return(pages)
  
 
 from jinja2 import Template
