@@ -16,18 +16,20 @@ def content_files():
 			"output": 'docs/' + name_only + extension,
 		})
 		return(pages)
- 
 
-from jinja2 import Template
-index_html = open("content/index.html").read() #open content index.html, mainpage
-template_html = open("templates/base.html").read() #open template base.html
-template = Template(template_html) #function Template w/ pmtr template_html assigned to template var
-template.render(      
-title="Homepage",
-content=index_html,
-)
+def jinja2_templating():
+	from jinja2 import Template
+	pages = content_files()
+	content_html = open(file_name).read() #file_name variable created for the file paths see above
+	template_html = open("templates/base.html").read() #open template base.html
+	template = Template(template_html) #function Template w/ pmtr template_html assigned to template var
+	return template.render(      
+	title=title,
+	content=content_html,
+	)
 
 def main():
+	pages = content_files()
 	template = open("templates/base.html").read() #opens base.html
 	for page in pages:
 		docs_output(template,page) 
