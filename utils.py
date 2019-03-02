@@ -24,7 +24,7 @@ def jinja2_templating(template_html,file_name,title_name):
 	content_html = open(file_name).read() #file_name variable created for the file paths see above
 	template_html = open("templates/base.html").read() #open template base.html
 	template = Template(template_html) #function Template w/ pmtr template_html assigned to template var
-	return template.render(      
+	return template.render(      #key step for placeholders
 	title=title_name,
 	content=content_html,
 	pages=pages,
@@ -36,13 +36,13 @@ def main():
 	for page in pages:
 		docs_output(template_html,page) 
 
-def docs_output(template_html,page): #all the parameters are local, we need template and page as parameters to define them before using in fx locally
-	file_name = page['filename'] #lines 95 - 97 dictionary keys assigned to a variable 
+def docs_output(template_html,page): 
+	file_name = page['filename']  
 	output = page['output']
 	title_name = page['title']
 	links = page['links']
 	final_step = jinja2_templating(template_html,file_name,title_name) #helper function
-	open(output, "w+").write(final_step) #overwrites the html file in the output with the file that has the placeholders replaced
+	open(output, "w+").write(final_step) 
 
 
 if __name__ == '__main__':
