@@ -8,8 +8,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+	{% for page in pages %}
+    	<li> <a class="nav-link js-scroll-trigger active"  href ="{{ page.links }}"> {{page.title }}</a></li>
+    {% endfor %}
 
-{{content}}
+	{{content}}
 
   </body>
 
